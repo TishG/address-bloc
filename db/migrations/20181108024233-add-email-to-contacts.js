@@ -7,20 +7,20 @@ module.exports = {
       allowNull: true
     }
   )
-  .then((column) => {
+  .then(() => {
          console.log("Column added successfully!");
        })
-  .catch((err) => {
+    .catch((err) => {
     console.log(err);
   });
 },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.removeColumn('Contacts','email')
-  .then((column) => {
+    .then(() => {
          console.log("Column removed successfully!");
        })
-  .catch((err) => {
+    .catch((err) => {
     console.log(err);
   });
   }

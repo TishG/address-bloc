@@ -10,6 +10,7 @@ module.exports = class MenuController {
         message: "Please choose from an option below: ",
         choices: [
           "Add new contact",
+          "View all contacts",
           "Request date and time",
           "Exit"
         ]
@@ -24,6 +25,9 @@ module.exports = class MenuController {
         switch(response.mainMenuChoice){
           case "Add new contact":
             this.addContact();
+            break;
+          case "View all contacts":
+            this.getContacts();
             break;
           case "Request date and time":
             this.getDate();
@@ -65,6 +69,24 @@ module.exports = class MenuController {
      `);
     this.main();
   }
+
+  getContacts() {
+  this.clear();
+  this.book.getContacts().then((contacts) => {
+    for (let contact of contacts) {
+      console.log(`
+      name: ${contact.name}
+      phone number: ${contact.phone}
+      email: ${contact.email}
+      ---------------`
+      );
+    }
+    this.main();
+  }).catch((err) => {
+    console.log(err);
+    this.main();
+  });
+}
 
   getContactCount(){
    return this.contacts.length;
