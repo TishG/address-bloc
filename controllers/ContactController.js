@@ -1,11 +1,11 @@
 const inquirer = require("inquirer");
- const Contact = require("../db/models").Contact;
+const Contact = require("../db/models").Contact;
 
 module.exports = class ContactController {
 
   constructor(){
-   this.contacts = [];
-   this.addContactQuestions = [
+    this.contacts = [];
+    this.addContactQuestions = [
   {
     type: "input",
     name: "name",
@@ -28,6 +28,5 @@ module.exports = class ContactController {
   addContact(name, phone){
     return Contact.create({name, phone})
   }
-
 
 }
